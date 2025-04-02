@@ -4,13 +4,16 @@ import "./App.css";
 function App() {
   const [movie, setMovie] = useState([]);
   useEffect(() => {
-    movies();
-  });
+    const dataFetch = async () => {
+      const data = await (
+        await fetch("http://localhost:3001/api/v1/movie/")
+      ).json();
 
-  const movies = async () => {
-    const response = await fetch("http://localhost:3001/api/v1/movie/");
-    setMovie(await response.json());
-  };
+      setMovie(data);
+    };
+
+    dataFetch();
+  }, []);
   return (
     <div>
       <h1 className="text-3xl font-bold underline text-center p-4">Movies</h1>
