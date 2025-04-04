@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import MovieForm from "./components/MovieForm";
 import "./App.css";
 
 function App() {
@@ -17,6 +18,9 @@ function App() {
   return (
     <div>
       <h1 className="text-3xl font-bold underline text-center p-4">Movies</h1>
+      <div className="mb-6">
+        <MovieForm />
+      </div>
       <div className="flex justify-center">
         <ol className="list-decimal pl-6 space-y-2 text-center">
           {movie.map((data) => {
