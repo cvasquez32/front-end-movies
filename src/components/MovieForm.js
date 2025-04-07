@@ -1,28 +1,39 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const MovieForm = () => {
-  // const [movie, setMovie] = useState({
-  //   title: "",
-  //   date: "",
-  // });
+  const [title, setTitle] = useState("");
+  const [date, setDate] = useState("");
 
-  // const [error, SetError] = useState(false);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  // useEffect(() => {
-  //   const requestOptions = {
-  //     method: "POST",
-  //     headers: { "Content-Type": "application/json" },
-  //     body: JSON.stringify(movie),
-  //   };
-  //   fetch("http://localhost:3000/api/v1/movie", requestOptions)
-  //     .then((response) => response.json())
-  //     .then((data) => setMovie(data));
-  // }, []);
+    const movieData = { title, date };
+
+    try {
+      const response = await fetch("http://localhost:3001/api/v1/movie", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(movieData),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Error: ${response.statusText}`);
+      }
+
+      const data = await response.json();
+      console.log("Movie Created", data);
+    } catch (error) {
+      console.error("Error, creating movie: ", error);
+    }
+  };
 
   return (
     <form
       className="max-w-md mx-auto p-6 bg-white shadow rounded"
       method="POST"
+      onSubmit={handleSubmit}
     >
       <div className="mb-4">
         <label
@@ -37,6 +48,9 @@ const MovieForm = () => {
           name="title"
           placeholder="Enter movie title"
           className="w-full px-3 py-2 border rounded focus:outline-none focus:border-blue-500"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          required
         />
       </div>
       <div className="mb-4">
@@ -51,6 +65,9 @@ const MovieForm = () => {
           id="date"
           name="date"
           className="w-full px-3 py-2 border rounded focus:outline-none focus:border-blue-500"
+          value={date}
+          onChange={(e) => setDate(e.target.value)}
+          required
         />
       </div>
       <button
