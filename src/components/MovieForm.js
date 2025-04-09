@@ -3,11 +3,12 @@ import { useState } from "react";
 const MovieForm = () => {
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
+  const [productionCost, setProductionCost] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const movieData = { title, date };
+    const movieData = { title, date, productionCost };
 
     try {
       const response = await fetch("http://localhost:3001/api/v1/movie", {
@@ -50,6 +51,24 @@ const MovieForm = () => {
           className="w-full px-3 py-2 border rounded focus:outline-none focus:border-blue-500"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
+          required
+        />
+      </div>
+      <div className="mb-4">
+        <label
+          htmlFor="title"
+          className="block text-gray-700 font-semibold mb-2"
+        >
+          Production Cost
+        </label>
+        <input
+          type="number"
+          id="title"
+          name="title"
+          placeholder="Enter Production Cost"
+          className="w-full px-3 py-2 border rounded focus:outline-none focus:border-blue-500"
+          value={productionCost}
+          onChange={(e) => setProductionCost(e.target.value)}
           required
         />
       </div>
