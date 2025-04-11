@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import DeleteItem from "./DeleteItem";
 
 function List() {
   const [movie, setMovie] = useState([]);
@@ -15,16 +16,20 @@ function List() {
   }, []);
   return (
     <div>
-      <ol className="list-decimal pl-6 space-y-2 text-center">
+      <ul className="list-none pl-6 space-y-2 text-center">
         {movie.map((data) => (
           <li
             key={data.id}
             className="text-sm text-gray-800 hover:text-blue-600 transition-colors duration-200"
           >
-            {data.title} | {data.production_budget}
+            <DeleteItem
+              id={data.movie_id}
+              title={data.title}
+              production_budget={data.production_budget}
+            />
           </li>
         ))}
-      </ol>
+      </ul>
     </div>
   );
 }

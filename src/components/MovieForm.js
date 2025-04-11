@@ -24,6 +24,7 @@ const MovieForm = () => {
       }
 
       const data = await response.json();
+      window.location.reload()
       console.log("Movie Created", data);
     } catch (error) {
       console.error("Error, creating movie: ", error);
