@@ -10,7 +10,7 @@ const DeleteItem = ({ id, title, production_budget }) => {
       }
 
       const data = await response.json();
-      window.location.reload()
+      window.location.reload();
       console.log("Movie Deleted", data);
     } catch (error) {
       console.error("Error, Deleting movie: ", error);
@@ -19,18 +19,18 @@ const DeleteItem = ({ id, title, production_budget }) => {
 
   return (
     <div className="flex items-center justify-between p-4 bg-white rounded shadow-md hover:shadow-lg transition-shadow duration-200">
-      <div>
-        <span className="text-md font-semibold text-gray-800">
-          {title} {id}{" "}
+      <div className="flex flex-col items-start">
+        <span className="block text-md font-semibold text-gray-800">
+          {title} {id}
         </span>
-        <span className="text-sm text-gray-600 ml-2">
-          | {production_budget}
+        <span className="block text-sm text-gray-600">
+          Production Budget: {production_budget}
         </span>
       </div>
       <button
         id={id}
         onClick={() => deleteOnClick(id)}
-        className="w-8 h-8 flex items-center justify-center bg-red-500 text-white rounded-full hover:bg-red-600 transition-colors duration-200"
+        className="w-6 h-6  bg-white text-black rounded hover:bg-red-200 transition-colors duration-200 leading-none text-center"
       >
         x
       </button>
