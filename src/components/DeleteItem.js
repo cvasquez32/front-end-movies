@@ -17,14 +17,25 @@ const DeleteItem = ({ id, title, production_budget, date }) => {
     }
   };
 
+  const getDateOnly = (date) => {
+    return date.split("T")[0];
+  };
+
+  const formatCurrency = (production_budget) => {
+    return new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+    }).format(production_budget);
+  };
+
   return (
     <div className="flex items-center justify-between p-4 bg-white rounded shadow-md hover:shadow-lg transition-shadow duration-200">
       <div className="flex flex-col items-start">
         <span className="block text-md font-semibold text-gray-800">
-          {title} {date}
+          {title} | {getDateOnly(date)}
         </span>
         <span className="block text-sm text-gray-600">
-          Production Budget: {production_budget}
+          Production Budget: {formatCurrency(production_budget)}
         </span>
       </div>
       <button
