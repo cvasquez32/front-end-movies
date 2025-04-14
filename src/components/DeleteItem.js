@@ -1,4 +1,4 @@
-const DeleteItem = ({ id, title, production_budget }) => {
+const DeleteItem = ({ id, title, production_budget, date }) => {
   const deleteOnClick = async (id) => {
     try {
       const response = await fetch(`http://localhost:3001/api/v1/movie/${id}`, {
@@ -21,7 +21,7 @@ const DeleteItem = ({ id, title, production_budget }) => {
     <div className="flex items-center justify-between p-4 bg-white rounded shadow-md hover:shadow-lg transition-shadow duration-200">
       <div className="flex flex-col items-start">
         <span className="block text-md font-semibold text-gray-800">
-          {title} {id}
+          {title} {date}
         </span>
         <span className="block text-sm text-gray-600">
           Production Budget: {production_budget}

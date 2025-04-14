@@ -26,6 +26,7 @@ function List() {
               id={data.movie_id}
               title={data.title}
               production_budget={data.production_budget}
+              date={data.date}
             />
           </li>
         ))}
