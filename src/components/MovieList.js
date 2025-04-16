@@ -17,19 +17,23 @@ function List() {
   return (
     <div>
       <ul className="list-none pl-6 space-y-2 text-center">
-        {movie.map((data) => (
-          <li
-            key={data.id}
-            className="text-sm text-gray-800 hover:text-blue-600 transition-colors duration-200"
-          >
-            <DeleteItem
-              id={data.movie_id}
-              title={data.title}
-              production_budget={data.production_budget}
-              date={data.date}
-            />
-          </li>
-        ))}
+        {movie && movie.length > 0 ? (
+          movie.map((data) => (
+            <li
+              key={data.id}
+              className="text-sm text-gray-800 hover:text-blue-600 transition-colors duration-200"
+            >
+              <DeleteItem
+                id={data.movie_id}
+                title={data.title}
+                production_budget={data.production_budget}
+                date={data.date}
+              />
+            </li>
+          ))
+        ) : (
+          <div>No Movie records to display.</div>
+        )}
       </ul>
     </div>
   );

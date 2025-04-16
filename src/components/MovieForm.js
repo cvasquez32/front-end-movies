@@ -1,4 +1,5 @@
 import { useState } from "react";
+import CurrencyInput from "./Form/CurrencyInput";
 
 const MovieForm = () => {
   const [title, setTitle] = useState("");
@@ -24,7 +25,7 @@ const MovieForm = () => {
       }
 
       const data = await response.json();
-      window.location.reload()
+      window.location.reload();
       console.log("Movie Created", data);
     } catch (error) {
       console.error("Error, creating movie: ", error);
@@ -55,24 +56,10 @@ const MovieForm = () => {
           required
         />
       </div>
-      <div className="mb-4">
-        <label
-          htmlFor="title"
-          className="block text-gray-700 font-semibold mb-2"
-        >
-          Production Cost
-        </label>
-        <input
-          type="number"
-          id="production_budget"
-          name="Production Budget"
-          placeholder="Enter Production Cost"
-          className="w-full px-3 py-2 border rounded focus:outline-none focus:border-blue-500"
-          value={production_budget}
-          onChange={(e) => setProductionBudget(e.target.value)}
-          required
-        />
-      </div>
+      <CurrencyInput
+        production_budget={production_budget}
+        setProductionBudget={setProductionBudget}
+      />
       <div className="mb-4">
         <label
           htmlFor="date"
