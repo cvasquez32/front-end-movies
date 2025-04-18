@@ -8,16 +8,16 @@ const CurrencyInput = ({ production_budget, setProductionBudget }) => {
   };
 
   // Fix this handleBlur
-  const handleBlur = () => {
-    const numberValue = parseFloat(production_budget);
-    if (!isNaN(numberValue)) {
-      const formatted = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-      }).format(numberValue);
-      setProductionBudget(formatted);
-    }
-  };
+  // const handleBlur = () => {
+  //   const numberValue = parseFloat(production_budget);
+  //   if (!isNaN(numberValue)) {
+  //     const formatted = new Intl.NumberFormat("en-US", {
+  //       style: "currency",
+  //       currency: "USD",
+  //     }).format(numberValue);
+  //     setProductionBudget(formatted);
+  //   }
+  // };
 
   return (
     <div className="mb-4">
