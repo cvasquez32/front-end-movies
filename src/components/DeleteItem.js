@@ -32,7 +32,10 @@ const DeleteItem = ({ id, title, production_budget, date }) => {
     <div className="flex items-center justify-between p-4 bg-white rounded shadow-md hover:shadow-lg transition-shadow duration-200">
       <div className="flex flex-col items-start">
         <span className="block text-md font-semibold text-gray-800">
-          {title} | {getDateOnly(date)}
+          {title}
+        </span>
+        <span className="block text-sm text-gray-600">
+          Release Date: {getDateOnly(date)}
         </span>
         <span className="block text-sm text-gray-600">
           Production Budget: {formatCurrency(production_budget)}
