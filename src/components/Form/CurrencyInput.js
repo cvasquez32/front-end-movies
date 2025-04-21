@@ -7,17 +7,16 @@ const CurrencyInput = ({ production_budget, setProductionBudget }) => {
     setProductionBudget(numericString);
   };
 
-  // Fix this handleBlur
-  // const handleBlur = () => {
-  //   const numberValue = parseFloat(production_budget);
-  //   if (!isNaN(numberValue)) {
-  //     const formatted = new Intl.NumberFormat("en-US", {
-  //       style: "currency",
-  //       currency: "USD",
-  //     }).format(numberValue);
-  //     setProductionBudget(formatted);
-  //   }
-  // };
+  const handleBlur = () => {
+    const numberValue = parseFloat(production_budget);
+    if (!isNaN(numberValue)) {
+      const formatted = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+      }).format(numberValue);
+      setProductionBudget(formatted);
+    }
+  };
 
   return (
     <div className="mb-4">
@@ -32,7 +31,7 @@ const CurrencyInput = ({ production_budget, setProductionBudget }) => {
         className="w-full px-3 py-2 border rounded focus:outline-none focus:border-blue-500"
         value={production_budget}
         onChange={handleChange}
-        // onBlur={handleBlur}
+        onBlur={handleBlur}
         required
       />
     </div>
