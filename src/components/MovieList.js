@@ -28,6 +28,7 @@ function List() {
                 title={data.title}
                 production_budget={data.production_budget}
                 date={data.date}
+                box_office={data.box_office}
               />
             </li>
           ))

@@ -5,11 +5,12 @@ const MovieForm = () => {
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
   const [production_budget, setProductionBudget] = useState("");
+  const [box_office, setBoxOffice] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const movieData = { title, date, production_budget };
+    const movieData = { title, date, production_budget, box_office };
 
     try {
       const response = await fetch("http://localhost:3001/api/v1/movie", {
@@ -57,8 +58,18 @@ const MovieForm = () => {
         />
       </div>
       <CurrencyInput
-        production_budget={production_budget}
-        setProductionBudget={setProductionBudget}
+        parameter={production_budget}
+        setParameter={setProductionBudget}
+        name="Production Cost"
+        id="production_budget"
+        placeholder="Production Cost"
+      />
+      <CurrencyInput
+        parameter={box_office}
+        setParameter={setBoxOffice}
+        name="Box Office"
+        id="box_office"
+        placeholder="Box Office"
       />
       <div className="mb-4">
         <label

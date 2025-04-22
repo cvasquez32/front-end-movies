@@ -1,4 +1,4 @@
-const DeleteItem = ({ id, title, production_budget, date }) => {
+const DeleteItem = ({ id, title, production_budget, date, box_office }) => {
   const deleteOnClick = async (id) => {
     try {
       const response = await fetch(`http://localhost:3001/api/v1/movie/${id}`, {
@@ -39,6 +39,9 @@ const DeleteItem = ({ id, title, production_budget, date }) => {
         </span>
         <span className="block text-sm text-gray-600">
           Production Budget: {formatCurrency(production_budget)}
+        </span>
+        <span className="block text-sm text-gray-600">
+          Box Office: {formatCurrency(box_office)}
         </span>
       </div>
       <button

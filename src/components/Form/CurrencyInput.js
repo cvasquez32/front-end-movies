@@ -1,35 +1,35 @@
 import React from "react";
 
-const CurrencyInput = ({ production_budget, setProductionBudget }) => {
+const CurrencyInput = ({ parameter, setParameter, name, id, placeholder }) => {
   const handleChange = (e) => {
     const rawValue = e.target.value;
     const numericString = rawValue.replace(/[^\d.]/g, "");
-    setProductionBudget(numericString);
+    setParameter(numericString);
   };
 
   const handleBlur = () => {
-    const numberValue = parseFloat(production_budget);
+    const numberValue = parseFloat(parameter);
     if (!isNaN(numberValue)) {
       const formatted = new Intl.NumberFormat("en-US", {
         style: "currency",
         currency: "USD",
       }).format(numberValue);
-      setProductionBudget(formatted);
+      setParameter(formatted);
     }
   };
 
   return (
     <div className="mb-4">
       <label htmlFor="title" className="block text-gray-700 font-semibold mb-2">
-        Production Cost
+        {name}
       </label>
       <input
         type="text"
-        id="production_budget"
-        name="Production Budget"
-        placeholder="Enter Production Cost"
+        id={id}
+        name={name}
+        placeholder={placeholder}
         className="w-full px-3 py-2 border rounded focus:outline-none focus:border-blue-500"
-        value={production_budget}
+        value={parameter}
         onChange={handleChange}
         onBlur={handleBlur}
         required
