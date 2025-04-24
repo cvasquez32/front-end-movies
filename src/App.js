@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import List from "./components/MovieList";
 import MovieForm from "./components/MovieForm";
 import "./App.css";

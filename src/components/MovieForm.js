@@ -1,5 +1,6 @@
 import { useState } from "react";
 import CurrencyInput from "./Form/CurrencyInput";
+import FileUpload from "./Upload/FileUpload";
 
 const MovieForm = () => {
   const [title, setTitle] = useState("");
@@ -88,6 +89,7 @@ const MovieForm = () => {
           required
         />
       </div>
+      <FileUpload/>
       <button
         type="submit"
         className="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600"
