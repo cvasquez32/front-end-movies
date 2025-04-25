@@ -1,20 +1,29 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
 
 const FileUpload = () => {
   const [file, setFile] = useState(null);
   const [uploading, setUploading] = useState(false);
+  const inputRef = useRef(null);
 
   const allowedTypes = ["image/jpeg", "image/png"];
 
   const handleFileInput = (event) => {
-    const selectedFile = event.target.files[0];
-    if (allowedTypes.includes(selectedFile.type)) {
-      setFile(selectedFile);
-      console.log(selectedFile);
-    } else {
-      alert("Invalid file type. Only images");
+    const selectedFile = event.target.files?.[0];
+
+    if (!selectedFile) {
+      setFile(null);
+      return;
     }
+
+    if (!allowedTypes.includes(selectedFile.type)) {
+      alert("Only PNG or JPEG Images");
+      setFile(null);
+      return;
+    }
+
+    setFile(selectedFile);
+    console.log("Got file: ", selectedFile);
   };
 
   const handleUpload = async () => {
@@ -58,7 +67,7 @@ const FileUpload = () => {
           type="file"
           required
           onChange={handleFileInput}
-          className="block w-full text-sm text-gray-700 border border-gray-300 rounded-lg cursor-pointer bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 mb-2"
+          className="block w-full text-sm text-gray-700 border border-gray-300 rounded cursor-pointer bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 mb-2"
         />
         <button
           onClick={() => handleUpload(file)}
