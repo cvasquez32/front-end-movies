@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
 
-const FileUpload = () => {
+const FileUpload = ({ poster_url, setPosterUrl, placeholder }) => {
   const [file, setFile] = useState(null);
   const [uploading, setUploading] = useState(false);
 
@@ -46,7 +46,11 @@ const FileUpload = () => {
     try {
       const command = new PutObjectCommand(params);
       const response = await client.send(command);
-      console.log("Upload Successfully: ", response);
+      console.log('Response: ', response)
+      poster_url = `https://${process.env.REACT_APP_S3_BUCKET}.s3.${process.env.REACT_APP_AWS_REGION}.amazonaws.com/${file.name}`;
+      if (response.$metadata.httpStatusCode === 200) {
+        setPosterUrl(poster_url);
+      }
     } catch (error) {
       console.error(error);
       setUploading(false);
@@ -70,10 +74,19 @@ const FileUpload = () => {
         />
         <button
           onClick={() => handleUpload(file)}
-          className="px-3 py-1 text-sm bg-blue-600 text-white rounded-md hover:bg-blue-700 transition"
+          disabled={!file}
+          className="px-3 py-1 text-sm bg-blue-600 text-white rounded-md hover:bg-blue-700 transition disabled:border-gray-200 disabled:bg-gray-50 disabled:text-gray-500 "
         >
           {uploading ? "Uploading..." : "Upload File"}
         </button>
+        <input
+          type="text"
+          required
+          readOnly
+          value={poster_url || ""}
+          placeholder={placeholder}
+          className="w-full px-3 py-2 border rounded focus:outline-none focus:border-blue-500 mt-2"
+        />
       </div>
     </>
   );

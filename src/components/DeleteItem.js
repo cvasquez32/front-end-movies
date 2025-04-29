@@ -1,4 +1,11 @@
-const DeleteItem = ({ id, title, production_budget, date, box_office }) => {
+const DeleteItem = ({
+  id,
+  title,
+  production_budget,
+  date,
+  box_office,
+  poster_url,
+}) => {
   const deleteOnClick = async (id) => {
     try {
       const response = await fetch(`http://localhost:3001/api/v1/movie/${id}`, {
@@ -31,6 +38,11 @@ const DeleteItem = ({ id, title, production_budget, date, box_office }) => {
   return (
     <div className="flex items-center justify-between p-4 bg-white rounded shadow-md hover:shadow-lg transition-shadow duration-200">
       <div className="flex flex-col items-start">
+        <img
+          src={poster_url}
+          alt="Movie Poster"
+          className="w-36 h-46 object-cover rounded-sm mb-2"
+        />
         <span className="block text-md font-semibold text-gray-800">
           {title}
         </span>
