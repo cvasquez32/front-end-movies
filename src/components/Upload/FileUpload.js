@@ -4,7 +4,6 @@ import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
 const FileUpload = () => {
   const [file, setFile] = useState(null);
   const [uploading, setUploading] = useState(false);
-  const inputRef = useRef(null);
 
   const allowedTypes = ["image/jpeg", "image/png"];
 
