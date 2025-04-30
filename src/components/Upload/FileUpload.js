@@ -7,6 +7,11 @@ const FileUpload = ({ poster_url, setPosterUrl, placeholder }) => {
 
   const allowedTypes = ["image/jpeg", "image/png"];
 
+  const cleanUrl = value => {
+    const match = value.match(/([^\/]+\.(jpg|jpeg|png))/i);
+    return match ? match[0] : '';
+  }
+
   const handleFileInput = (event) => {
     const selectedFile = event.target.files?.[0];
 
@@ -83,7 +88,7 @@ const FileUpload = ({ poster_url, setPosterUrl, placeholder }) => {
           type="text"
           required
           readOnly
-          value={poster_url || ""}
+          value={cleanUrl(poster_url)}
           placeholder={placeholder}
           className="w-full px-3 py-2 border rounded focus:outline-none focus:border-blue-500 mt-2"
         />

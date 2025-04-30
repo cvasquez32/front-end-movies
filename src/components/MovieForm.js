@@ -7,7 +7,7 @@ const MovieForm = () => {
   const [date, setDate] = useState("");
   const [production_budget, setProductionBudget] = useState("");
   const [box_office, setBoxOffice] = useState("");
-  const [poster_url, setPosterUrl] = useState(null);
+  const [poster_url, setPosterUrl] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -99,7 +99,7 @@ const MovieForm = () => {
       <FileUpload
         poster_url={poster_url}
         setPosterUrl={setPosterUrl}
-        placeholder="URL"
+        placeholder="img.png"
       />
       <button
         type="submit"
