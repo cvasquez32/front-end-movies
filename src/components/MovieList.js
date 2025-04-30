@@ -4,15 +4,14 @@ import DeleteItem from "./DeleteItem";
 function List() {
   const [movie, setMovie] = useState([]);
   useEffect(() => {
-    const dataFetch = async () => {
-      const data = await (
-        await fetch("http://localhost:3001/api/v1/movie/")
-      ).json();
-
-      setMovie(data);
-    };
-
-    dataFetch();
+    (async () => {
+      try {
+        const res = await fetch("http://localhost:3001/api/v1/movie/");
+        setMovie(await res.json());
+      } catch (e) {
+        console.error(e);
+      }
+    })();
   }, []);
   return (
     <div>
