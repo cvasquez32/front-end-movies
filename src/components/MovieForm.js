@@ -1,16 +1,24 @@
 import { useState } from "react";
 import CurrencyInput from "./Form/CurrencyInput";
+import FileUpload from "./Upload/FileUpload";
 
 const MovieForm = () => {
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
   const [production_budget, setProductionBudget] = useState("");
   const [box_office, setBoxOffice] = useState("");
+  const [poster_url, setPosterUrl] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const movieData = { title, date, production_budget, box_office };
+    const movieData = {
+      title,
+      date,
+      production_budget,
+      box_office,
+      poster_url
+    };
 
     try {
       const response = await fetch("http://localhost:3001/api/v1/movie", {
@@ -88,6 +96,11 @@ const MovieForm = () => {
           required
         />
       </div>
+      <FileUpload
+        poster_url={poster_url}
+        setPosterUrl={setPosterUrl}
+        placeholder="URL"
+      />
       <button
         type="submit"
         className="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600"
